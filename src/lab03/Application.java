@@ -16,7 +16,7 @@ public class Application {
 
             int capacity = 0;
             StackQueue structure;
-            if (commandIndex >= 0 && commandIndex < 7) {
+            if (commandIndex >= 0 && commandIndex < 6) {
                 System.out.println("Enter capacity:");
                 capacity = scanner.nextInt();
             }
@@ -27,6 +27,10 @@ public class Application {
                     break;
                 case 1:
                     structure = new StackArrayDown(capacity);
+                    stackQueueCommandsLoop(structure);
+                    break;
+                case 2:
+                    structure = new StackNode(capacity);
                     stackQueueCommandsLoop(structure);
                     break;
                 case 6:
