@@ -13,11 +13,20 @@ public class Application {
             printGeneralCommands();
             System.out.println("->");
             int commandIndex = scanner.nextInt();
+
+            int capacity = 0;
+            StackQueue structure;
+            if (commandIndex >= 0 && commandIndex < 7) {
+                System.out.println("Enter capacity:");
+                capacity = scanner.nextInt();
+            }
             switch (commandIndex) {
                 case 0:
-                    System.out.println("Enter stack capacity:");
-                    int capacity = scanner.nextInt();
-                    StackArrayUp structure = new StackArrayUp(capacity);
+                    structure = new StackArrayUp(capacity);
+                    stackQueueCommandsLoop(structure);
+                    break;
+                case 1:
+                    structure = new StackArrayDown(capacity);
                     stackQueueCommandsLoop(structure);
                     break;
                 case 6:
@@ -34,6 +43,11 @@ public class Application {
     }
     private void printGeneralCommands() {
         System.out.println("0 - StackArrayUp\n" +
+                           "1 - StackArrayDown\n" +
+                           "2 - StackNode\n" +
+                           "3 - QueueArrayUp\n" +
+                           "4 - QueueArrayDown\n" +
+                           "5 - QueueNode\n" +
                            "6 - Quit\n" +
                 "-----------------------------------------");
     }
