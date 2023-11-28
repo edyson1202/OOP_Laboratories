@@ -1,13 +1,92 @@
 package lab03;
+import java.util.Scanner;
 
 public class Application {
+    private Scanner scanner;
     private boolean shouldClose;
     Application() {
+        this.scanner = new Scanner(System.in);
         shouldClose = false;
     }
     public void run() {
         while(!shouldClose) {
-
+            printGeneralCommands();
+            System.out.println("->");
+            int commandIndex = scanner.nextInt();
+            switch (commandIndex) {
+                case 0:
+                    System.out.println("Enter stack capacity:");
+                    int capacity = scanner.nextInt();
+                    StackArrayUp structure = new StackArrayUp(capacity);
+                    stackQueueCommandsLoop(structure);
+                    break;
+                case 6:
+                    quit();
+                    break;
+                default:
+                    System.out.println("Invalid command index!");
+                    break;
+            }
+        }
+    }
+    private void quit() {
+        shouldClose = true;
+    }
+    private void printGeneralCommands() {
+        System.out.println("0 - StackArrayUp\n" +
+                           "6 - Quit\n" +
+                "-----------------------------------------");
+    }
+    private void printStackQueueCommands() {
+        System.out.println("0 - Push\n" +
+                "1 - Pop\n" +
+                "2 - Top\n" +
+                "3 - PrintAll\n" +
+                "4 - isEmpty\n" +
+                "5 - isFull\n" +
+                "6 - Back\n" +
+                "-----------------------------------------");
+    }
+    private void stackQueueCommandsLoop(StackQueue structure) {
+        boolean goBack = false;
+        while (!goBack) {
+            printStackQueueCommands();
+            System.out.println("->");
+            int commandIndex = scanner.nextInt();
+            switch (commandIndex) {
+                case 0:
+                    System.out.println("Enter element:");
+                    int value = scanner.nextInt();
+                    structure.push(value);
+                    break;
+                case 1:
+                    structure.pop();
+                    break;
+                case 2:
+                    System.out.println(structure.top());
+                    break;
+                case 3:
+                    printStackQueueElements(structure);
+                    break;
+                case 4:
+                    System.out.println(structure.isEmpty());
+                    break;
+                case 5:
+                    System.out.println(structure.isFull());
+                    break;
+                case 6:
+                    goBack = true;
+                    break;
+                default:
+                    System.out.println("Invalid command index!");
+                    break;
+            }
+        }
+    }
+    private void printStackQueueElements(StackQueue structure) {
+        int[] elements = structure.getAll();
+        for (int i = elements.length - 1; i >= 0; i--) {
+            System.out.println(elements[i]);
         }
     }
 }

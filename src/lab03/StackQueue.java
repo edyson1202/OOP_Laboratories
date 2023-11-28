@@ -1,7 +1,7 @@
 package lab03;
 
 public interface StackQueue {
-    public void push();
+    public void push(int value);
     public void pop();
     public int top();
     public int[] getAll();
