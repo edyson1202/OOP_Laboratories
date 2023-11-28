@@ -6,3 +6,5 @@ Simple java class
 University Management System
 ## LAB_02
 Version Control System
+## LAB_03
+Implementation of Stack and Queue data structures
