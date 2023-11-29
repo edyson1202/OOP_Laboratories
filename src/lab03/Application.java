@@ -38,8 +38,8 @@ public class Application {
                     stackQueueCommandsLoop(structure);
                     break;
                 case 4:
-                    // = new StackNode(capacity);
-                    //stackQueueCommandsLoop(structure);
+                    structure = new QueueArrayDown(capacity);
+                    stackQueueCommandsLoop(structure);
                     break;
                 case 5:
                     //structure = new StackNode(capacity);

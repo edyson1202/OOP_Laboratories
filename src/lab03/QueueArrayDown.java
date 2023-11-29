@@ -1,23 +1,23 @@
 package lab03;
 
-public class QueueArrayUp implements StackQueue{
+public class QueueArrayDown implements StackQueue {
     private int[] queue;
     private int capacity;
-    private int count;
+    private int free;
     private int frontIndex;
-    QueueArrayUp(int capacity) {
+    QueueArrayDown(int capacity) {
         this.queue = new int[capacity];
         this.capacity = capacity;
-        this.count = 0;
-        this.frontIndex = 0;
+        this.free = capacity;
+        this.frontIndex = capacity - 1;
     }
     @Override
     public boolean isEmpty() {
-        return count == 0;
+        return free == capacity;
     }
     @Override
     public boolean isFull() {
-        return count == capacity;
+        return free == 0;
     }
     @Override
     public void push(int value) {
@@ -25,8 +25,9 @@ public class QueueArrayUp implements StackQueue{
             System.out.println("Queue full!");
             return;
         }
-        queue[(frontIndex + count) % capacity] = value;
-        count++;
+        // in JAVA  % operator returns the remainder not the modulus, the [+ capacity] is there to ensure we get the modulus
+        queue[(frontIndex - (capacity - free) + capacity) % capacity] = value;
+        free--;
     }
     @Override
     public void pop() {
@@ -34,8 +35,8 @@ public class QueueArrayUp implements StackQueue{
             System.out.println("Queue empty!");
             return;
         }
-        frontIndex = (frontIndex + 1) % capacity;
-        count--;
+        frontIndex = (frontIndex - 1 + capacity) % capacity;
+        free++;
     }
     @Override
     public int top() {
@@ -44,9 +45,9 @@ public class QueueArrayUp implements StackQueue{
     }
     @Override
     public int[] getAll() {
-        int[] returnQueue = new int[count];
-        for (int i = 0; i < count; i++) {
-            returnQueue[i] = queue[(frontIndex + i) % capacity];
+        int[] returnQueue = new int[capacity - free];
+        for (int i = 0; i < capacity - free; i++) {
+            returnQueue[i] = queue[(frontIndex - i + capacity) % capacity];
         }
         return returnQueue;
     }
