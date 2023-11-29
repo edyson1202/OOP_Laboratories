@@ -42,8 +42,8 @@ public class Application {
                     stackQueueCommandsLoop(structure);
                     break;
                 case 5:
-                    //structure = new StackNode(capacity);
-                    //stackQueueCommandsLoop(structure);
+                    structure = new QueueNode(capacity);
+                    stackQueueCommandsLoop(structure);
                     break;
                 case 6:
                     quit();
