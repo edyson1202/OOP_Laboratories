@@ -33,6 +33,18 @@ public class Application {
                     structure = new StackNode(capacity);
                     stackQueueCommandsLoop(structure);
                     break;
+                case 3:
+                    structure = new QueueArrayUp(capacity);
+                    stackQueueCommandsLoop(structure);
+                    break;
+                case 4:
+                    // = new StackNode(capacity);
+                    //stackQueueCommandsLoop(structure);
+                    break;
+                case 5:
+                    //structure = new StackNode(capacity);
+                    //stackQueueCommandsLoop(structure);
+                    break;
                 case 6:
                     quit();
                     break;
